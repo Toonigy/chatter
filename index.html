@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Login</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <script>
+    // Your Firebase configuration (replace with your own config)
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-PyAmoho1uct9MP1MthOgGUbsulIZhmU",
+      authDomain: "chatter-d9f26.firebaseapp.com",
+      projectId: "chatter-d9f26",
+      storageBucket: "chatter-d9f26.appspot.com",
+      messagingSenderId: "723040394689",
+      appId: "1:723040394689:web:775322cf2898f6f76fa340"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  </script>
+</head>
+<body>
+  <div id="login-container">
+    <h2>Login to Chat</h2>
+    <button id="google-login-btn">Login with Google</button>
+  </div>
+
+  <script>
+    document.getElementById('google-login-btn').addEventListener('click', function() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).then(result => {
+        console.log('User signed in:', result.user);
+        window.location.href = 'chat.html'; // Redirect to chat page after login
+      }).catch(error => {
+        console.error('Error during login:', error);
+      });
+    });
+  </script>
+</body>
+</html>
